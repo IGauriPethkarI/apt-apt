@@ -7,6 +7,7 @@
 /apt-apt/bazel-out
 
 # Node
+/node_modules
 /apt-apt/node_modules
 npm-debug.log
 yarn-error.log
