@@ -161,7 +161,7 @@ app.get('/api/apartment-rankings/:id', async (req, res) => {
             .query(`
                     WITH PercentileData AS (
                         SELECT   apartment_id,
-                        building_id,
+                        building_id, floor_id,
                         total_size,
                         room_count,
                         quality_score,
@@ -173,14 +173,13 @@ app.get('/api/apartment-rankings/:id', async (req, res) => {
                     SELECT
                         apartment_id,
                         building_id,
+                        floor_id,
                         total_size,
                         room_count,
                         quality_score,
                         size_rank,
                         quality_rank,
                         total_apartments_calc AS total_apartments,
-                        CAST(size_rank AS FLOAT) / CAST(total_apartments_calc AS FLOAT) AS size_percentile,
-                        CAST(quality_rank AS FLOAT) / CAST(total_apartments_calc AS FLOAT) AS quality_percentile,
                         CASE WHEN apartment_id = @current_apartment_id THEN 1 ELSE 0 END AS is_current
                     FROM PercentileData
                     ORDER BY quality_rank, size_rank;
