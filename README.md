@@ -7,20 +7,17 @@ Apt-Apt is an interactive apartment quality visualization dashboard built with A
 Before running the application, ensure you have the following installed:
 
 1.  **Node.js** (v18 or higher recommended) - [Download](https://nodejs.org/)
-2.  **Microsoft SQL Server** (Express or Developer edition)
-3.  **SQL Server Management Studio (SSMS)** (Optional, for managing DB)
 
-## Database Setup
+*Note: Microsoft SQL Server is **no longer required**. The application now uses a lightweight CSV-based backend.*
 
-The application relies on a SQL Server database for geometry and simulation data.
+## Data Setup
 
-1.  Create a new database named `apt-apt`.
-2.  Open **SQL Server Management Studio**.
-3.  Execute the provided SQL scripts in the following order:
-    *   `Geometries.sql` (Creates tables and inserts structure data)
-    *   `Simulations.sql` (Inserts simulation metrics)
-4.  **Configuration**: The backend connects to the server `Gaurii` with user `general` by default. 
-    *   To change this, edit `server.js` (lines 8-18).
+The application loads apartment data directly from CSV files located in the `data/` directory:
+- `geometries.csv`
+- `simulations.csv`
+- `apartment_rankings.csv`
+
+Ensure these files are present before starting the server.
 
 ## Automatic Setup & Run
 
@@ -31,7 +28,7 @@ We have provided a one-click script for Windows users.
     *   Check for Node.js.
     *   Install dependencies for the Server (`cd backend && npm install`).
     *   Install dependencies for the Client (`cd apt-apt && npm install`).
-    *   Launch both the Backend and Frontend servers.
+    *   Launch both the Backend (port 3000) and Frontend (port 4200) servers.
 
 ## Manual Setup
 
@@ -44,7 +41,7 @@ cd backend
 npm install
 node server.js
 ```
-Server runs at `http://localhost:3000`.
+The server will load CSV data (approx 5-10 seconds) and start at `http://localhost:3000`.
 
 ### 2. Frontend (Angular App)
 Open a new terminal in `apt-apt`:
@@ -58,5 +55,5 @@ Application runs at `http://localhost:4200`.
 ## Architecture
 
 *   **Frontend**: Angular 17 + D3.js (./apt-apt)
-*   **Backend**: Node.js + Express + MSSQL (./backend)
-*   **Database**: MS SQL Server (`apt-apt` DB)
+*   **Backend**: Node.js + Express + CSV Parser (./backend)
+*   **Data**: CSV Files (./data)
