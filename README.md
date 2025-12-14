@@ -2,6 +2,9 @@
 
 Apt-Apt is an interactive apartment quality visualization dashboard built with Angular and D3.js.
 
+> [!NOTE]
+> This project was previously configured to use a local MSSQL server for data storage. To create a portable artifact, the data has been converted to CSV format (subset of the original csv data from Swiss Dwellings) (`geometries.csv`, `simulations.csv`, and `apartment_rankings.csv`), removing the need for a database installation.
+
 ## Prerequisites
 
 Before running the application, ensure you have the following installed:
