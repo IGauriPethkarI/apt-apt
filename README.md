@@ -60,3 +60,12 @@ Application runs at `http://localhost:4200`.
 *   **Frontend**: Angular 17 + D3.js (./apt-apt)
 *   **Backend**: Node.js + Express + CSV Parser (./backend)
 *   **Data**: CSV Files (./data)
+
+## Derived Metrics
+
+The application uses a **Derived Table** (`apartment_rankings.csv`) to provide pre-calculated insights that would be too expensive to compute on every request. This table includes:
+*   **Quality Score (0-1)**: An aggregate metric based on sunlight, noise levels, and view quality.
+*   **Size Rank**: A percentile rank of the apartment's square footage compared to others in the building.
+*   **Quality Rank**: A percentile rank of the apartment's overall quality score.
+
+This allows for instant "Best/Worst" comparisons and efficient sorting in the frontend visualization.
